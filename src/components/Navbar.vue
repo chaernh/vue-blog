@@ -60,7 +60,9 @@
 <script>
 import { reactive } from 'vue'
 // import { useRouter } from 'vue-router'
-// import axios from 'axios'
+import axios from 'axios'
+
+let uri = 'http://localhost:3000/auth/login'
 
 export default {
     name: 'Navbar',
@@ -77,16 +79,18 @@ export default {
             let username = form.username
             let password = form.password
 
-            console.log(username, password)
+            // console.log(username, password)
 
-            // axios.get('/api/login', {
-            //     username: username,
-            //     password: password
-            // }).then((res) => {
-            //     console.log(res)
-            // }).catch(e => {
-            //     console.log(e)
-            // })
+            axios.get(uri, {
+                username: username,
+                password: password
+            }).then((res) => {
+                console.log(res)
+            }).catch(e => {
+                form.username = ''
+                form.password = ''
+                console.log(e)
+            })
         }
 
         return {

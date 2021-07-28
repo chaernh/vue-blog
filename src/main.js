@@ -13,9 +13,12 @@ import 'jquery/dist/jquery.min'
 import 'popper.js/dist/popper.min'
 import 'bootstrap/dist/js/bootstrap.min'
 
+// import axios from 'axios'
+
 const app = createApp(App)
 
 app.use(router)
 app.use(vuex)
+// app.use(axios)
 
 app.mount('#app')
