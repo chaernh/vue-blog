@@ -5,11 +5,9 @@
     <div id="posts-section" class="mb-5">
         <div class="container">
             <div class="row">
-                <div class="row mt-4 mb-2">
-                    <div class="col-md-12">
-                        <div class="posts-section-header bg-primary-1 py-1 mb-3">
-                            <h1 class="title-header">Posts</h1>
-                        </div>
+                <div class="my-4 mb-5 d-flex justify-content-center">
+                    <div class="custom-border-bottom text-center">
+                        <h3>Latest Post</h3>
                     </div>
                 </div>
                 <div class="row">

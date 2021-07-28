@@ -17,6 +17,14 @@ a:hover {
     color: var(--primary-1) !important;
 }
 
+.text-primary-1 {
+    color: var(--primary) !important;
+}
+
+.custom-border-bottom {
+    border-bottom: 1px solid var(--primary);
+}
+
 .posts-section-header {
     width: 100%;
     height: 10rem;

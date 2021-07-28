@@ -47,8 +47,6 @@
                                             <li class="list-group-item p-3 mb-2 custom-margin-bottom">Photography</li>
                                             <li class="list-group-item p-3 mb-2 custom-margin-bottom">Travel</li>
                                             <li class="list-group-item p-3 mb-2 custom-margin-bottom">Sport</li>
-                                            <li class="list-group-item p-3 mb-2 custom-margin-bottom">Tech</li>
-                                            <li class="list-group-item p-3 mb-2 custom-margin-bottom">Health</li>
                                         </ul>
                                         <div class="p-3">
                                             <a href="#">See more</a>
@@ -122,7 +120,7 @@ export default {
         })
 
         return {
-            posts, filteredPostQuery
+            posts, filteredPostQuery, querySearch
         }
     }
 }
