@@ -1,0 +1,17 @@
+:root {
+    --primary: #42b883;
+    --primary-1: #3ba374;
+}
+
+a {
+    text-decoration: none !important;
+    color: var(--primary) !important;
+}
+
+a:hover {
+    text-decoration: underline !important;
+}
+
+.login-box .header {
+    
+}
