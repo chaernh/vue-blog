@@ -47,6 +47,8 @@
                             <hr>
                             <div class="text-center">
                                 <p>Don't have an account? Sign up <a href="#">here</a>.</p>
+                                <p class="custom-font">or</p>
+                                <p>Lost your password? Click <a href="#">here</a>.</p>
                             </div>
                         </div>
                     </div>
