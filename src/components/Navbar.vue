@@ -79,11 +79,11 @@ export default {
 
             // console.log(username, password)
 
-            axios.get('http://localhost:3000/auth/login', {
+            axios.post('http://localhost:3000/auth/login', {
                 username: username,
                 password: password
             }).then((res) => {
-                console.log(res)
+                console.log(res.data)
             }).catch(e => {
                 form.username = ''
                 form.password = ''
