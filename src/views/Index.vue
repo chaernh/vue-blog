@@ -1,16 +1,14 @@
 <template>
-    <div id="navbar-section">
+    <div id="navbar-section" class="mb-5">
         <Navbar />
     </div>
-    <div id="body-section">
+    <div id="body-section" class="mb-5">
         <div class="container">
             <div class="row">
-                <!-- <div class="header-img"></div> -->
                 <div class="row mt-4 mb-2">
-                    <div class="col-md-8">
-                        <div class="body-section-header py-1 mb-3">
-                            <h4>LATEST POSTS</h4>
-                        </div>
+                    <div class="col-md-12">
+                        <div class="body-section-header bg-primary-1 py-1 mb-3"></div>
+                        <h1 class="title-header">Posts</h1>
                     </div>
                 </div>
                 <div class="row">
@@ -20,10 +18,11 @@
                                 <a href="#" class="hover-no-underlined"><h3>{{ post.title }}</h3></a>
                                 <hr>
                                 <p>{{ post.body }}</p>
-                                <hr>
+                            </div>
+                            <div class="card-footer">
                                 <div class="d-flex justify-content-between">
-                                    <span><i class='bx bxs-user mr-1'></i>Chaer</span>
-                                    <span><i class='bx bx-time mr-1'></i>21-10-2020</span>
+                                    <span><i class="fas fa-user"></i>Chaer</span>
+                                    <span><i class='bx bx-time mr-1'></i>{{ moment(post.createdAt).fromNow() }}</span>
                                 </div>
                             </div>
                         </div>
@@ -44,6 +43,16 @@
                                         <li class="list-group-item p-3 mb-2 custom-margin-bottom">Tech</li>
                                         <li class="list-group-item p-3 mb-2 custom-margin-bottom">Health</li>
                                     </ul>
+                                    <div class="p-3">
+                                        <a href="#">See more</a>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="filter-section">
+                                    <ul class="list-group">
+                                        <li class="list-group-item p-3 mb-2 custom-margin-bottom">Sort By Time</li>
+                                        <li class="list-group-item p-3 mb-2 custom-margin-bottom">Sort By Title</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -52,18 +61,31 @@
             </div>
         </div>
     </div>
+    <div id="footer-section">
+        <Footer />
+        <!-- <div class="footer bg-primary-1 py-5 text-center">
+            <span>Made with ♥ by <a href="https://chaerfansyah-nh.web.app" class="text-white">chaernh</a></span>
+        </div> -->
+    </div>
 </template>
 
 <script>
 import Navbar from '../components/Navbar.vue'
+import Footer from '../components/Footer.vue'
 import axios from 'axios'
+import moment from 'moment'
 import { onMounted, ref } from 'vue'
 
 export default {
     name: 'Index',
-    components: { Navbar },
+    components: { Navbar, Footer },
+
+    created: function () {
+        this.moment = moment;
+    },
 
     setup() {
+
 
         //reactive state
         let posts = ref([])
@@ -73,6 +95,7 @@ export default {
             axios.get('http://localhost:3000/api/posts')
             .then(response => {
                 posts.value = response.data
+                console.log(response.data.createdAt)
             }).catch(error => {
                 console.log(error)
             })

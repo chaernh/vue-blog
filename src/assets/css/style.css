@@ -19,19 +19,37 @@ a:hover {
 
 .body-section-header {
     width: 100%;
-    border-bottom: 1px solid var(--primary);
+    height: 10rem;
+    background-color: var(--primary);
+    position: relative;
 }
 
-.category-section .list-group .list-group-item {
+.title-header {
+    font-size: 4rem;
+    font-size: 4rem;
+    position: absolute;
+    z-index: 1;
+    top: 16%;
+    left: 10%;
+    color: #fff;
+}
+
+.category-section .list-group .list-group-item , 
+.filter-section .list-group .list-group-item {
     border: none !important;
     cursor: pointer;
 }
 
-.category-section .list-group .list-group-item:hover, .category-section .list-group .list-group-item.active {
+.category-section .list-group .list-group-item:hover, 
+.filter-section .list-group .list-group-item:hover, 
+.category-section .list-group .list-group-item.active,
+.filter-section .list-group .list-group-item.active,
+.bg-primary-1 {
     background-color: #42b883 !important;
     color: #fff !important;
 }
 
-.category-section .list-group .custom-margin-bottom:last-child {
+.category-section .list-group .custom-margin-bottom:last-child,
+.filter-section .list-group .custom-margin-bottom:last-child {
     margin-bottom: 0 !important;
 }

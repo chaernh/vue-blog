@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar fixed-top navbar-light bg-light">
         <div class="container-fluid">
             <div class="left">
                 <router-link :to="{name: 'index'}" class="navbar-brand">
