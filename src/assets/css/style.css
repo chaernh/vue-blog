@@ -12,6 +12,26 @@ a:hover {
     text-decoration: underline !important;
 }
 
-.login-box .header {
-    
+.hover-no-underlined:hover {
+    text-decoration: none !important;
+    color: var(--primary-1) !important;
+}
+
+.body-section-header {
+    width: 100%;
+    border-bottom: 1px solid var(--primary);
+}
+
+.category-section .list-group .list-group-item {
+    border: none !important;
+    cursor: pointer;
+}
+
+.category-section .list-group .list-group-item:hover, .category-section .list-group .list-group-item.active {
+    background-color: #42b883 !important;
+    color: #fff !important;
+}
+
+.category-section .list-group .custom-margin-bottom:last-child {
+    margin-bottom: 0 !important;
 }

@@ -21,14 +21,14 @@
                         <div class="col-md-12">
                             <div class="header text-center">
                                 <img src="../assets/logo.png" alt="logo">
-                                <figure class="text-center">
+                                <!-- <figure class="text-center">
                                     <blockquote class="blockquote">
                                         <p>A well-known quote, contained in a blockquote element.</p>
                                     </blockquote>
                                     <figcaption class="blockquote-footer">
                                         Someone famous in <cite title="Source Title">Source Title</cite>
                                     </figcaption>
-                                </figure>
+                                </figure> -->
                             </div>
                             <hr>
                             <form @submit.prevent="login">
@@ -62,8 +62,6 @@ import { reactive } from 'vue'
 // import { useRouter } from 'vue-router'
 import axios from 'axios'
 
-let uri = 'http://localhost:3000/auth/login'
-
 export default {
     name: 'Navbar',
     setup() {
@@ -81,7 +79,7 @@ export default {
 
             // console.log(username, password)
 
-            axios.get(uri, {
+            axios.get('http://localhost:3000/auth/login', {
                 username: username,
                 password: password
             }).then((res) => {
