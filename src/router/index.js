@@ -5,13 +5,13 @@ import { createRouter, createWebHistory  } from 'vue-router'
 const routes = [
     {
         path: '/',
-        name: 'post.index',
+        name: 'index',
         component: () => import( /* webpackChunkName: "post.index" */ '@/views/Index.vue')
     },
     {
-        path: '/login',
-        name: 'login',
-        component: () => import( /* webpackChunkName: "post.index" */ '@/views/Login.vue')
+        path: '/admin',
+        name: 'admin.index',
+        component: () => import( /* webpackChunkName: "post.index" */ '@/views/admin/Index.vue')
     }
 ]
 
