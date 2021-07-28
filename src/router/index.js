@@ -9,6 +9,11 @@ const routes = [
         component: () => import( /* webpackChunkName: "post.index" */ '@/views/Index.vue')
     },
     {
+        path: '/posts',
+        name: 'posts',
+        component: () => import( /* webpackChunkName: "post.index" */ '@/views/Posts.vue')
+    },
+    {
         path: '/admin',
         name: 'admin.index',
         component: () => import( /* webpackChunkName: "post.index" */ '@/views/admin/Index.vue')
