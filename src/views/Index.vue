@@ -7,33 +7,31 @@
             <div class="row">
                 <div class="my-4 mb-5 d-flex justify-content-center">
                     <div class="custom-border-bottom text-center">
-                        <h3>Latest Post</h3>
+                        <h3 class="color-black">Latest Post</h3>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-4 mb-3" v-for="(post, index) in posts.slice(0, 7)" :key="index">
-                                <div class="card border-0 rounded shadow custom-height position-relative">
-                                    <div class="post-card">
-                                        <div class="post-img">
-                                            <img src="https://picsum.photos/200" alt="picsum/200">
-                                        </div>
-                                        <div class="post-title">
-                                            <a href="#" class="hover-no-underlined">{{ post.title }}</a> 
-                                            <!-- max 75 char -->
-                                        </div>
-                                        <div class="post-category">
-                                            <span class="badge rounded-pill bg-primary">Tech</span>
-                                        </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-4 mb-3" v-for="(post, index) in posts.slice(0, 7)" :key="index">
+                            <div class="card border-0 rounded shadow custom-height position-relative">
+                                <div class="post-card">
+                                    <div class="post-img">
+                                        <img src="https://picsum.photos/200" alt="picsum/200">
+                                    </div>
+                                    <div class="post-title">
+                                        <a href="#" class="hover-no-underlined">{{ post.title.substring(0,75) }}</a> 
+                                        <!-- max 75 char -->
+                                    </div>
+                                    <div class="post-category">
+                                        <span class="badge rounded-pill bg-primary">Tech</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="text-center mt-5">
-                                <router-link :to="{name: 'posts'}">
-                                    <button class="btn btn-outline-success">See more</button>
-                                </router-link>
-                            </div>
+                        </div>
+                        <div class="text-center mt-5">
+                            <router-link :to="{name: 'posts'}">
+                                <button class="btn btn-outline-success">See more</button>
+                            </router-link>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,11 @@
 :root {
     --primary: #42b883;
     --primary-1: #3ba374;
+    --black: #4d4d4d;
+}
+
+.color-black {
+    color: var(--black) !important;
 }
 
 a {
@@ -78,7 +83,8 @@ a:hover {
 
 .post-card .post-title,
 .post-card .post-body,
-.post-card .post-category {
+.post-card .post-category, 
+.post-card .post-info {
     padding: .75rem;
 }
 
@@ -107,6 +113,29 @@ a:hover {
 
 .post-category span {
     font-size: .8rem;
+}
+
+.post-info {
+    background-color: whitesmoke;
+}
+
+.avatar-img img {
+    white-space: nowrap;
+    background-color: #c3c3c3;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    color: #fff;
+    display: inline-flex;
+    font-size: .75rem;
+    text-align: center;
+    vertical-align: middle;
+    width: 2rem;
+}
+
+.author a:hover {
+    color: var(--primary) !important;
+    text-decoration: none !important;
 }
 
 @media only screen and (max-width: 1024px) {
