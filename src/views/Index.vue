@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="text-center mt-5">
+                        <div class="text-center mt-3">
                             <router-link :to="{name: 'posts'}">
                                 <button class="btn btn-outline-success">See more</button>
                             </router-link>
@@ -41,6 +41,11 @@
                 </div>
             </div>
         </div>
+        <!-- <div class="hide-desktop">
+            <span class="float">
+                <i class='bx bxs-category my-float bx-md' style='color:#ffffff' v-b-modal.filterModal></i>
+            </span>
+        </div> -->
     </div>
     <div id="footer-section">
         <Footer />
@@ -71,42 +76,16 @@ export default {
         let loading = reactive({
             posts: false
         })
-        let filter = ref([
-            {
-                name: 'title',
-                condition: 0
-            },
-            {
-                name: 'time',
-                condition: 0
-            }
-        ])
-
-        // function sortedTitle(indicator) {
-        //     if (indicator === 'asc') {
-        //         posts.value.sort((a,b) => (a.title > b.title) ? 1 : -1)
-        //     }
-        //     else {
-        //         posts.value.sort((a,b) => (b.title > a.title) ? 1 : -1)
-        //     }
-        // }
-
-        // function sortedTime(indicator) {
-        //     if (indicator === 'asc') {
-        //         posts.value.sort((a,b) => (a.createdAt > b.createdAt) ? 1 : -1)
-        //     }
-        //     else {
-        //         posts.value.sort((a,b) => (b.createdAt > a.createdAt) ? 1 : -1)
-        //     }
-        // }
 
         function getAllPosts() {
+            loading.posts = true
             axios.get('http://localhost:3000/api/posts')
             .then(response => {
-                console.log('OK', response.data)
                 posts.value = response.data
+                loading.posts = false
             }).catch(error => {
                 console.log(error)
+                loading.posts = false
             })
         }
 
@@ -118,7 +97,6 @@ export default {
         return {
             posts,
             selectedFilter,
-            filter,
             loading
         }
     }

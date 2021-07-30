@@ -127,6 +127,7 @@ export default {
             searchQuery: false
         })
 
+
         let filteredPostQuery = computed(() => {
             var post = posts.value
             var query = querySearch.value.toLowerCase()
@@ -143,7 +144,7 @@ export default {
                 return post 
             }
         })
-
+        
         function getAllPosts() {
             loading.posts = true
             axios.get('http://localhost:3000/api/posts')
@@ -154,7 +155,7 @@ export default {
                 console.log(error)
                 loading.posts = false
             })
-        }
+        }    
 
         onMounted(() => {
             getAllPosts()
