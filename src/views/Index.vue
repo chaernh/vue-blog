@@ -11,7 +11,12 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <div class="row">
+                    <div class="row" v-if="loading.posts">
+                        <div class="loading-state" v-if="loading.posts">
+                            Loading data...
+                        </div>
+                    </div>
+                    <div class="row" v-else>
                         <div class="col-md-4 mb-3" v-for="(post, index) in posts.slice(0, 7)" :key="index">
                             <div class="card border-0 rounded shadow custom-height position-relative">
                                 <div class="post-card">
@@ -20,7 +25,6 @@
                                     </div>
                                     <div class="post-title">
                                         <a href="#" class="hover-no-underlined">{{ post.title.substring(0,75) }}</a> 
-                                        <!-- max 75 char -->
                                     </div>
                                     <div class="post-category">
                                         <span class="badge rounded-pill bg-primary">Tech</span>
@@ -50,7 +54,7 @@ import Footer from '../components/Footer.vue'
 import axios from 'axios'
 import moment from 'moment'
 
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, reactive } from 'vue'
 
 export default {
     name: 'Index',
@@ -64,6 +68,9 @@ export default {
 
         let posts = ref([])
         let selectedFilter = ref(0)
+        let loading = reactive({
+            posts: false
+        })
         let filter = ref([
             {
                 name: 'title',
@@ -111,7 +118,8 @@ export default {
         return {
             posts,
             selectedFilter,
-            filter
+            filter,
+            loading
         }
     }
     

@@ -4,6 +4,14 @@
     --black: #4d4d4d;
 }
 
+.float-left {
+    float: left !important;
+}
+
+.float-right {
+    float: right !important;
+}
+
 .color-black {
     color: var(--black) !important;
 }
@@ -138,12 +146,54 @@ a:hover {
     text-decoration: none !important;
 }
 
-@media only screen and (max-width: 1024px) {
+.loading-state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8rem 0;
+}
+/* .offcanvas-body {
+    position: relative;
+}
+
+.offcanvas-body button {
+    position: absolute;
+    bottom: 10px;
+} */
+
+.offcanvas-body .links a {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+/* .offcanvas-body .links {
+    position: relative;
+    animation-name: anime1;
+    animation-direction: normal;
+    animation-iteration-count: inherit;
+    animation-duration: 3s;
+}
+
+@keyframes anime1 {
+    0% { top: 0; right: 0; }
+    50% { top: 0; left: 50%; }
+    100% { top: 0; left: 0 }
+} */
+
+@media only screen and (min-width: 768px) {
+    .hide-desktop {
+        display: none !important;
+    }
 }
 
 @media only screen and (max-width: 768px) {
+    .hide-desktop {
+        display: inline-block !important;
+    }
+
     .hide-mobile {
-        display: none;
+        display: none !important;
     }
 
     .mobile-custom-col-12 {

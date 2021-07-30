@@ -1,13 +1,22 @@
 <template>
     <nav class="navbar fixed-top navbar-light bg-light">
         <div class="container-fluid">
-            <div class="left">
+            <div class="left d-flex flex-row align-items-center">
                 <router-link :to="{name: 'index'}" class="navbar-brand">
                     <img src="../assets/logo.png" alt="logo" height="24" class="d-inline-block align-text-top">
                 </router-link>
+                <router-link :to="{name: 'index'}" class="navbar-link hover-no-underlined mx-3 hide-mobile">
+                    Home
+                </router-link>
+                <router-link :to="{name: 'posts'}" class="navbar-link hover-no-underlined mx-3 hide-mobile">
+                    Posts
+                </router-link>
             </div>
             <div class="right">
-                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
+                <button class="navbar-toggler hide-desktop" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbar" aria-controls="offcanvasRight">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <button class="btn btn-success hide-mobile" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
             </div>
         </div>
     </nav>
@@ -54,6 +63,32 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- off canvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="navbar" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header mb-5">
+            <img src="../assets/logo.png" alt="logo" height="24" class="d-inline-block align-text-top">
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="row h-100">
+                <div class="links px-4">
+                    <div class="d-flex flex-column">
+                        <router-link :to="{name: 'index'}" class="hover-no-underlined">
+                            Home
+                        </router-link>
+                        <router-link :to="{name: 'posts'}" class="hover-no-underlined">
+                            Posts
+                        </router-link>
+                    </div>
+                </div>
+                <div class="button-section mt-auto">
+                    <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
+                </div>
+            </div>
+            
         </div>
     </div>
 

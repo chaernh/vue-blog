@@ -13,8 +13,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-8 mobile-custom-col-12">
-                        <div class="row">
+                    <div class="col-md-8 mobile-custom-col-12" v-if="loading.posts">
+                        <div class="loading-state">
+                            Loading data...
+                        </div>
+                    </div>
+                    <div class="col-md-8 mobile-custom-col-12" v-else>
+                        <div class="row" v-if="filteredPostQuery.length < 1">
+                            <div class="loading-state">
+                                Not found...
+                            </div>
+                        </div>
+                        <div class="row" v-else>
                             <div class="custom-col mb-3" v-for="(post, index) in filteredPostQuery" :key="index">
                                 <div class="card border-0 rounded shadow custom-height position-relative">
                                     <div class="post-card">
@@ -41,7 +51,20 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 hide-mobile">
+                    <div class="col-md-4 hide-mobile" v-if="loading.categories">
+                        <div class="card border-0 rounded shadow">
+                            <div class="card-body">
+                                <div class="search-section">
+                                    <input type="search" class="form-control" placeholder="Search..." v-model="querySearch" name="search">
+                                </div>
+                                <hr>
+                                <div class="loading-state">
+                                    Loading data...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 hide-mobile" v-else>
                         <div class="card border-0 rounded shadow">
                             <div class="card-body">
                                 <div class="search-section">
@@ -85,7 +108,7 @@ import Footer from '../components/Footer.vue'
 import axios from 'axios'
 import moment from 'moment'
 
-import { onMounted, ref, computed } from 'vue'
+import { onMounted, ref, reactive, computed } from 'vue'
 
 export default {
     name: "Posts",
@@ -98,6 +121,11 @@ export default {
     setup() {
         let posts = ref([])
         let querySearch = ref('')
+        let loading = reactive({
+            posts: false,
+            categories: false,
+            searchQuery: false
+        })
 
         let filteredPostQuery = computed(() => {
             var post = posts.value
@@ -117,12 +145,14 @@ export default {
         })
 
         function getAllPosts() {
+            loading.posts = true
             axios.get('http://localhost:3000/api/posts')
             .then(response => {
-                console.log('OK', response.data)
                 posts.value = response.data
+                loading.posts = false
             }).catch(error => {
                 console.log(error)
+                loading.posts = false
             })
         }
 
@@ -131,7 +161,7 @@ export default {
         })
 
         return {
-            posts, filteredPostQuery, querySearch
+            posts, filteredPostQuery, querySearch, loading
         }
     }
 }
