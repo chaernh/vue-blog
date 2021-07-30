@@ -51,7 +51,7 @@
                             </div>
                             <div class="col-md-12 mt-5" v-if="!credential.isLoggedIn">
                                 <div class="text-center">
-                                    <p>Want read more blogs? Sign in for read unlimited blogs!</p>
+                                    <p>Want read more blogs? Login for read unlimited blogs!</p>
                                     <button class="btn btn-outline-success btn-regular-size" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
                                 </div>
                             </div>
@@ -115,6 +115,7 @@ import axios from 'axios'
 import moment from 'moment'
 
 import { onMounted, ref, reactive, computed } from 'vue'
+import { useStore } from "vuex"
 
 export default {
     name: "Posts",
@@ -125,6 +126,7 @@ export default {
     },
 
     setup() {
+        const store = useStore()
         let posts = ref([])
         let querySearch = ref('')
         let loading = reactive({
@@ -133,6 +135,9 @@ export default {
             searchQuery: false
         })
 
+        let credential = computed(() => {
+            return store.state
+        })
 
         let filteredPostQuery = computed(() => {
             var post = posts.value
@@ -155,7 +160,7 @@ export default {
             loading.posts = true
             axios.get('http://localhost:3000/api/posts')
             .then(response => {
-                posts.value = response.data
+                posts.value = response.data.slice(0,6)
                 loading.posts = false
             }).catch(error => {
                 console.log(error)
@@ -168,7 +173,7 @@ export default {
         })
 
         return {
-            posts, filteredPostQuery, querySearch, loading
+            posts, filteredPostQuery, querySearch, loading, credential
         }
     }
 }

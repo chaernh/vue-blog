@@ -92,7 +92,17 @@
                     </div>
                 </div>
                 <div class="button-section mt-auto">
-                    <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
+                    <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#exampleModal" v-if="!credential.isLoggedIn">Login</button>
+                    <div v-else>
+                        <div class="author d-flex flex-row align-items-center mx-3 hide-mobile">
+                            <div class="avatar-img">
+                                <img src="https://picsum.photos/200" alt="avatar">
+                            </div>
+                            <a href="#" class="px-2 color-black">{{ credential.user.username }}</a>
+                        </div>
+                        <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</button>
+
+                    </div>
                 </div>
             </div>
             
@@ -103,7 +113,7 @@
 
 <script>
 
-import { reactive } from 'vue'
+import { computed, reactive } from 'vue'
 // import { useRouter } from 'vue-router'
 import axios from 'axios'
 import { useStore } from "vuex"
@@ -113,24 +123,22 @@ export default {
     name: 'Navbar',
     setup() {
 
-        const store = useStore();
+        const store = useStore()
 
         const form = reactive({
             username: '',
             password: ''
         })
 
-        // let credential = computed(() => {
-        //     return store.state
-        // })
+        let credential = computed(() => {
+            return store.state
+        })
 
         // const router = useRouter()
 
         function login() {
             let username = form.username
             let password = form.password
-
-            // console.log(username, password)
 
             axios.post('http://localhost:3000/auth/login', {}, {
                 auth: {
@@ -153,7 +161,7 @@ export default {
         }
 
         return {
-            form, login, logout
+            form, login, logout, credential
         }
     }
 }
