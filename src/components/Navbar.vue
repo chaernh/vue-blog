@@ -12,11 +12,18 @@
                     Posts
                 </router-link>
             </div>
-            <div class="right">
+            <div class="right d-flex flex-row align-items-center">
+                <div class="author d-flex flex-row align-items-center mx-3 hide-mobile" v-if="credential.isLoggedIn">
+                    <div class="avatar-img">
+                        <img src="https://picsum.photos/200" alt="avatar">
+                    </div>
+                    <a href="#" class="px-2 color-black">{{ credential.user.username }}</a>
+                </div>
                 <button class="navbar-toggler hide-desktop" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbar" aria-controls="offcanvasRight">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <button class="btn btn-success hide-mobile" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
+                <button class="btn btn-success hide-mobile" data-bs-toggle="modal" data-bs-target="#exampleModal" v-if="!credential.isLoggedIn">Login</button>
+                <button class="btn btn-danger hide-mobile" @click="logout" v-else>Logout</button>
             </div>
         </div>
     </nav>
@@ -95,18 +102,27 @@
 </template>
 
 <script>
+
 import { reactive } from 'vue'
 // import { useRouter } from 'vue-router'
 import axios from 'axios'
+import { useStore } from "vuex"
 
 export default {
+
     name: 'Navbar',
     setup() {
+
+        const store = useStore();
 
         const form = reactive({
             username: '',
             password: ''
         })
+
+        // let credential = computed(() => {
+        //     return store.state
+        // })
 
         // const router = useRouter()
 
@@ -116,11 +132,15 @@ export default {
 
             // console.log(username, password)
 
-            axios.post('http://localhost:3000/auth/login', {
-                username: username,
-                password: password
+            axios.post('http://localhost:3000/auth/login', {}, {
+                auth: {
+                    username: username,
+                    password: password
+                }
             }).then((res) => {
-                console.log(res.data)
+                store.commit('storeCredential', res.data)
+                form.username = ''
+                form.password = ''
             }).catch(e => {
                 form.username = ''
                 form.password = ''
@@ -128,8 +148,12 @@ export default {
             })
         }
 
+        function logout() {
+            store.commit('removeCredential')
+        }
+
         return {
-            form, login
+            form, login, logout
         }
     }
 }

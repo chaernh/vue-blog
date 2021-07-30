@@ -49,6 +49,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-12 mt-5" v-if="!credential.isLoggedIn">
+                                <div class="text-center">
+                                    <p>Want read more blogs? Sign in for read unlimited blogs!</p>
+                                    <button class="btn btn-outline-success btn-regular-size" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4 hide-mobile" v-if="loading.categories">
